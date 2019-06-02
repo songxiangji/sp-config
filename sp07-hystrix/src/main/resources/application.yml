@@ -15,7 +15,6 @@ ribbon:
   MaxAutoRetries: 1
   OkToRetryOnAllOperations: true
 
-#hystrix 短路超时设置,此设置一般应大于 ribbon 的重试超时时长，例如 10 秒
 hystrix:
   command:
     default:
@@ -24,7 +23,6 @@ hystrix:
           thread:
             timeoutInMilliseconds: 2000
 
-#暴露 hystrix 监控端点
 management:
   endpoints:
     web:

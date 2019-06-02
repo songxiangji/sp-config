@@ -20,15 +20,15 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
-	
+
 	@GetMapping("/{orderId}")
 	public JsonResult<Order> getOrder(@PathVariable String orderId) {
 		log.info("get order, id="+orderId);
-		
+
 		Order order = orderService.getOrder(orderId);
 		return JsonResult.ok(order);
 	}
-	
+
 	@GetMapping("/")
 	public JsonResult addOrder() {
 		//模拟post提交的数据

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: feign
+    name: zuul
 
 server:
   port: 3001
@@ -10,20 +10,19 @@ eureka:
     service-url:
       defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
 
+zuul:
+  retryable: true
+
+    #  routes:
+    #    item-service: /item-service/**
+    #    user-service: /user-service/**
+    #    order-service: /order-service/**
+
 ribbon:
   ConnectTimeout: 1000
   ReadTimeout: 1000
-
-item-service:
-  ribbon:
-    ConnectTimeout: 500
-    ReadTimeout: 1000
-    MaxAutoRetriesNextServer: 2
-    MaxAutoRetries: 1
-
-feign:
-  hystrix:
-    enabled: true
+  MaxAutoRetriesNextServer: 1
+  MaxAutoRetries: 1
 
 hystrix:
   command:
@@ -38,3 +37,4 @@ management:
     web:
       exposure:
         include: hystrix.stream
+

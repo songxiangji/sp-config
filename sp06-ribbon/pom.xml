@@ -41,7 +41,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-       <!-- 添加 ribbon 起步依赖（可选）-->
+       <!-- 添加 ribbon 起步依赖（可选）,eureka 依赖中已经包含了 ribbon-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>

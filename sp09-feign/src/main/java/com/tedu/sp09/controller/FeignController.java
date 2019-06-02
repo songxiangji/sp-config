@@ -3,6 +3,7 @@ package com.tedu.sp09.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +20,18 @@ import com.tedu.web.util.JsonResult;
 
 @RestController
 public class FeignController {
+	@Qualifier("itemFeignServiceFB")
 	@Autowired
 	private ItemFeignService itemServcie;
+
+	@Qualifier("userFeignServiceFB")
 	@Autowired
 	private UserFeignService userServcie;
+
+	@Qualifier("orderFeignServiceFB")
 	@Autowired
 	private OrderFeignService orderServcie;
-	
+
 	@GetMapping("/item-service/{orderId}")
 	public JsonResult<List<Item>> getItems(@PathVariable String orderId) {
 		return itemServcie.getItems(orderId);
@@ -37,19 +43,19 @@ public class FeignController {
 	}
 
 	/////////////////////////////////////////
-	
+
 	@GetMapping("/user-service/{userId}")
 	public JsonResult<User> getUser(@PathVariable Integer userId) {
 		return userServcie.getUser(userId);
 	}
 
-	@GetMapping("/user-service/{userId}/score") 
+	@GetMapping("/user-service/{userId}/score")
 	public JsonResult addScore(@PathVariable Integer userId, Integer score) {
 		return userServcie.addScore(userId, score);
 	}
-	
+
 	/////////////////////////////////////////
-	
+
 	@GetMapping("/order-service/{orderId}")
 	public JsonResult<Order> getOrder(@PathVariable String orderId) {
 		return orderServcie.getOrder(orderId);

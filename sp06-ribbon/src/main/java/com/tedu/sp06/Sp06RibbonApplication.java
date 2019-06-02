@@ -13,14 +13,15 @@ import org.springframework.web.client.RestTemplate;
 public class Sp06RibbonApplication {
 
 
-    @LoadBalanced//负载均衡注解
+    @LoadBalanced //负载均衡注解
     //创建 RestTemplate 实例，并存入 spring 容器
     @Bean
-    public RestTemplate getRestTemplate(){
+    public RestTemplate getRestTemplate() {
         SimpleClientHttpRequestFactory f = new SimpleClientHttpRequestFactory();
         f.setConnectTimeout(1000);
         f.setReadTimeout(1000);
         return new RestTemplate(f);
+
         //RestTemplate 中默认的 Factory 实例中，两个超时属性默认是 -1，
         //未启用超时，也不会触发重试
         //return new RestTemplate();
